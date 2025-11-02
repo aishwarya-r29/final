@@ -1,0 +1,71 @@
+{% extends 'exchange/base.html' %}
+
+{% block title %}Farmer Dashboard - Farm to Factories Exchange{% endblock %}
+
+{% block content %}
+<div class="container my-5">
+    <div class="row mb-4">
+        <div class="col-md-8">
+            <h1 class="display-5">🌱 Farmer Dashboard</h1>
+            <p class="lead">Manage your harvest batches and connect with factories</p>
+        </div>
+        <div class="col-md-4 text-end">
+            <a href="{% url 'upload_batch' %}" class="btn btn-success btn-lg">
+                <span class="fs-5">+</span> Upload New Batch
+            </a>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-12">
+            <div class="card shadow">
+                <div class="card-header bg-success text-white">
+                    <h4 class="mb-0">Your Available Batches</h4>
+                </div>
+                <div class="card-body">
+                    {% if batches %}
+                    <div class="table-responsive">
+                        <table class="table table-hover">
+                            <thead>
+                                <tr>
+                                    <th>Farmer</th>
+                                    <th>Product</th>
+                                    <th>Quantity</th>
+                                    <th>Harvest Date</th>
+                                    <th>Price</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {% for batch in batches %}
+                                <tr>
+                                    <td><strong>{{ batch.farmer_name }}</strong></td>
+                                    <td>{{ batch.product }}</td>
+                                    <td><span class="badge bg-info">{{ batch.quantity }}</span></td>
+                                    <td>{{ batch.harvest_date }}</td>
+                                    <td><span class="text-success fw-bold">{{ batch.price }}</span></td>
+                                </tr>
+                                {% endfor %}
+                            </tbody>
+                        </table>
+                    </div>
+                    {% else %}
+                    <div class="text-center py-5">
+                        <p class="text-muted">No batches available yet. Upload your first batch to get started!</p>
+                        <a href="{% url 'upload_batch' %}" class="btn btn-success">Upload Batch</a>
+                    </div>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row mt-4">
+        <div class="col-md-12">
+            <div class="alert alert-info">
+                <h5 class="alert-heading">💡 Quick Tip</h5>
+                <p class="mb-0">Check the <a href="{% url 'matches' %}" class="alert-link">Matches page</a> to see AI-powered recommendations connecting your batches with factory demands!</p>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

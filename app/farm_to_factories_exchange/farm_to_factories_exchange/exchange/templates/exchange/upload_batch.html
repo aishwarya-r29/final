@@ -1,0 +1,58 @@
+{% extends 'exchange/base.html' %}
+
+{% block title %}Upload Batch - Farm to Factories Exchange{% endblock %}
+
+{% block content %}
+<div class="container my-5">
+    <div class="row justify-content-center">
+        <div class="col-md-8">
+            <div class="card shadow">
+                <div class="card-header bg-success text-white">
+                    <h3 class="mb-0">🌱 Upload New Batch</h3>
+                </div>
+                <div class="card-body p-4">
+                    <form method="POST">
+                        {% csrf_token %}
+                        <div class="mb-3">
+                            <label for="product_name" class="form-label">Product Name</label>
+                            <input type="text" class="form-control" id="product_name" name="product_name" 
+                                   placeholder="e.g., Organic Tomatoes, Fresh Apples" required>
+                            <div class="form-text">Enter the name of the product you're offering</div>
+                        </div>
+                        
+                        <div class="mb-3">
+                            <label for="quantity" class="form-label">Quantity</label>
+                            <input type="text" class="form-control" id="quantity" name="quantity" 
+                                   placeholder="e.g., 500 kg, 1000 kg" required>
+                            <div class="form-text">Specify the available quantity with unit</div>
+                        </div>
+                        
+                        <div class="mb-3">
+                            <label for="harvest_date" class="form-label">Harvest Date</label>
+                            <input type="date" class="form-control" id="harvest_date" name="harvest_date" required>
+                            <div class="form-text">When was or will the product be harvested?</div>
+                        </div>
+                        
+                        <div class="mb-4">
+                            <label for="price" class="form-label">Price</label>
+                            <input type="text" class="form-control" id="price" name="price" 
+                                   placeholder="e.g., $2.50/kg, $1.80/kg" required>
+                            <div class="form-text">Your asking price per unit</div>
+                        </div>
+                        
+                        <div class="d-grid gap-2">
+                            <button type="submit" class="btn btn-success btn-lg">Submit Batch</button>
+                            <a href="{% url 'farmer_dashboard' %}" class="btn btn-outline-secondary">Cancel</a>
+                        </div>
+                    </form>
+                </div>
+            </div>
+            
+            <div class="alert alert-info mt-4">
+                <h6 class="alert-heading">ℹ️ Note</h6>
+                <p class="mb-0 small">After submitting, your batch will be visible on your dashboard and automatically matched with relevant factory demands using our AI-powered system.</p>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

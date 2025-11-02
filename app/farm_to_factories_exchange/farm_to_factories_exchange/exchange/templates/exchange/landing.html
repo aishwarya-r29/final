@@ -1,0 +1,79 @@
+{% extends 'exchange/base.html' %}
+
+{% block title %}Welcome - Farm to Factories Exchange{% endblock %}
+
+{% block content %}
+<div class="hero-section bg-success text-white py-5">
+    <div class="container text-center">
+        <h1 class="display-3 fw-bold mb-4">Farm to Factories Exchange</h1>
+        <p class="lead mb-4">AI-Powered Marketplace Connecting Farmers and Factories for Sustainable Growth</p>
+        <p class="fs-5 mb-5">Building a better future through smart agricultural partnerships</p>
+    </div>
+</div>
+
+<div class="container my-5">
+    <div class="row text-center mb-5">
+        <div class="col-md-12">
+            <h2 class="mb-4">Supporting UN Sustainable Development Goals</h2>
+        </div>
+    </div>
+    <div class="row g-4 mb-5">
+        <div class="col-md-4">
+            <div class="card h-100 shadow-sm">
+                <div class="card-body text-center">
+                    <div class="mb-3 fs-1">🌾</div>
+                    <h5 class="card-title">SDG 2: Zero Hunger</h5>
+                    <p class="card-text">Ensure access to safe, nutritious food by connecting farmers with reliable markets</p>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="card h-100 shadow-sm">
+                <div class="card-body text-center">
+                    <div class="mb-3 fs-1">💼</div>
+                    <h5 class="card-title">SDG 8: Decent Work</h5>
+                    <p class="card-text">Promote sustained economic growth and productive employment for farmers and workers</p>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="card h-100 shadow-sm">
+                <div class="card-body text-center">
+                    <div class="mb-3 fs-1">🏭</div>
+                    <h5 class="card-title">SDG 9: Industry & Innovation</h5>
+                    <p class="card-text">Build resilient infrastructure and foster innovation in agricultural supply chains</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row text-center mt-5">
+        <div class="col-md-12 mb-4">
+            <h2 class="mb-4">Get Started</h2>
+            <p class="lead mb-4">Choose your role to access the platform</p>
+        </div>
+    </div>
+    <div class="row g-4 justify-content-center">
+        <div class="col-md-5">
+            <div class="card shadow">
+                <div class="card-body text-center p-4">
+                    <h3 class="card-title mb-3">🌱 For Farmers</h3>
+                    <p class="card-text mb-4">Upload your harvest batches and connect with factories looking for your products</p>
+                    <a href="{% url 'farmer_dashboard' %}" class="btn btn-success btn-lg w-100 mb-2">Go to Farmer Dashboard</a>
+                    <a href="{% url 'upload_batch' %}" class="btn btn-outline-success w-100">Upload New Batch</a>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-5">
+            <div class="card shadow">
+                <div class="card-body text-center p-4">
+                    <h3 class="card-title mb-3">🏭 For Factories</h3>
+                    <p class="card-text mb-4">Post your product demands and discover reliable farmers to fulfill your needs</p>
+                    <a href="{% url 'factory_dashboard' %}" class="btn btn-primary btn-lg w-100 mb-2">Go to Factory Dashboard</a>
+                    <a href="{% url 'post_demand' %}" class="btn btn-outline-primary w-100">Post New Demand</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

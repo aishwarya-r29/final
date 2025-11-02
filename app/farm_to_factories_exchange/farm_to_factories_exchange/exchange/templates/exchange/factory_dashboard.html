@@ -1,0 +1,71 @@
+{% extends 'exchange/base.html' %}
+
+{% block title %}Factory Dashboard - Farm to Factories Exchange{% endblock %}
+
+{% block content %}
+<div class="container my-5">
+    <div class="row mb-4">
+        <div class="col-md-8">
+            <h1 class="display-5">🏭 Factory Dashboard</h1>
+            <p class="lead">Manage your product demands and discover reliable farmers</p>
+        </div>
+        <div class="col-md-4 text-end">
+            <a href="{% url 'post_demand' %}" class="btn btn-primary btn-lg">
+                <span class="fs-5">+</span> Post New Demand
+            </a>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-12">
+            <div class="card shadow">
+                <div class="card-header bg-primary text-white">
+                    <h4 class="mb-0">Your Active Demands</h4>
+                </div>
+                <div class="card-body">
+                    {% if demands %}
+                    <div class="table-responsive">
+                        <table class="table table-hover">
+                            <thead>
+                                <tr>
+                                    <th>Factory</th>
+                                    <th>Product Needed</th>
+                                    <th>Quantity</th>
+                                    <th>Budget</th>
+                                    <th>Deadline</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {% for demand in demands %}
+                                <tr>
+                                    <td><strong>{{ demand.factory_name }}</strong></td>
+                                    <td>{{ demand.product_needed }}</td>
+                                    <td><span class="badge bg-warning text-dark">{{ demand.quantity }}</span></td>
+                                    <td><span class="text-primary fw-bold">{{ demand.budget }}</span></td>
+                                    <td>{{ demand.deadline }}</td>
+                                </tr>
+                                {% endfor %}
+                            </tbody>
+                        </table>
+                    </div>
+                    {% else %}
+                    <div class="text-center py-5">
+                        <p class="text-muted">No demands posted yet. Post your first demand to find matching farmers!</p>
+                        <a href="{% url 'post_demand' %}" class="btn btn-primary">Post Demand</a>
+                    </div>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row mt-4">
+        <div class="col-md-12">
+            <div class="alert alert-info">
+                <h5 class="alert-heading">💡 Quick Tip</h5>
+                <p class="mb-0">Visit the <a href="{% url 'matches' %}" class="alert-link">Matches page</a> to discover AI-powered recommendations connecting your demands with available farmer batches!</p>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

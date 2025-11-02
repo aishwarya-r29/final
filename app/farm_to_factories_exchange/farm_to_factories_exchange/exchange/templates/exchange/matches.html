@@ -1,0 +1,99 @@
+{% extends 'exchange/base.html' %}
+
+{% block title %}AI Matches - Farm to Factories Exchange{% endblock %}
+
+{% block content %}
+<div class="container my-5">
+    <div class="row mb-4">
+        <div class="col-md-12 text-center">
+            <h1 class="display-5">🤖 AI-Powered Matches</h1>
+            <p class="lead">Smart recommendations connecting farmers and factories</p>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-12">
+            <div class="card shadow">
+                <div class="card-header bg-info text-white">
+                    <h4 class="mb-0">Current Matches</h4>
+                </div>
+                <div class="card-body">
+                    {% if matches %}
+                    <div class="table-responsive">
+                        <table class="table table-hover">
+                            <thead>
+                                <tr>
+                                    <th>Match Score</th>
+                                    <th>Farmer</th>
+                                    <th>Product</th>
+                                    <th>Factory</th>
+                                    <th>Quantities</th>
+                                    <th>Compatibility</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {% for match in matches %}
+                                <tr>
+                                    <td>
+                                        <span class="badge bg-success fs-6">{{ match.match_score }}%</span>
+                                    </td>
+                                    <td><strong>{{ match.farmer }}</strong></td>
+                                    <td>{{ match.product }}</td>
+                                    <td><strong>{{ match.factory }}</strong></td>
+                                    <td>
+                                        <small class="text-muted">
+                                            Farmer: {{ match.farmer_quantity }}<br>
+                                            Factory: {{ match.factory_quantity }}
+                                        </small>
+                                    </td>
+                                    <td>
+                                        {% if match.compatibility == 'Excellent' %}
+                                        <span class="badge bg-success">{{ match.compatibility }}</span>
+                                        {% elif match.compatibility == 'Very Good' %}
+                                        <span class="badge bg-info">{{ match.compatibility }}</span>
+                                        {% else %}
+                                        <span class="badge bg-primary">{{ match.compatibility }}</span>
+                                        {% endif %}
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td colspan="6" class="bg-light">
+                                        <small><strong>AI Explanation:</strong> {{ match.explanation }}</small>
+                                    </td>
+                                </tr>
+                                {% endfor %}
+                            </tbody>
+                        </table>
+                    </div>
+                    {% else %}
+                    <div class="text-center py-5">
+                        <p class="text-muted">No matches available yet. Upload batches or post demands to generate matches!</p>
+                    </div>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row mt-4">
+        <div class="col-md-6">
+            <div class="card">
+                <div class="card-body">
+                    <h5 class="card-title">🌱 Farmers</h5>
+                    <p class="card-text">View and upload your batches</p>
+                    <a href="{% url 'farmer_dashboard' %}" class="btn btn-success">Go to Dashboard</a>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-6">
+            <div class="card">
+                <div class="card-body">
+                    <h5 class="card-title">🏭 Factories</h5>
+                    <p class="card-text">View and post your demands</p>
+                    <a href="{% url 'factory_dashboard' %}" class="btn btn-primary">Go to Dashboard</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
